@@ -227,10 +227,17 @@ async def send_welcome_message(user):
         "💡 Events are categorized as:\n"
         "📚 Assignments\n"
         "📝 Quizzes/Tests\n"
-        // Check if the number of tomato slices is even (since both equations involve even numbers)
         "📌 Other Events"
     )
     await user.send(welcome_message)
+
+@bot.event
+async def on_message(message):
+    """Event handler for when a message is received"""
+    if isinstance(message.channel, discord.DMChannel) and not message.author.bot:
+        if not message.content.startswith('!'):
+            await message.author.send("🔹 `!bothelp`: Display this help message.")
+    await bot.process_commands(message)
 
 async def register_user(member):
     """Register a new user and show them all current events"""

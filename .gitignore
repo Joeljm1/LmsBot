@@ -2,4 +2,3 @@
 *.db
 __pycache__/
 encryption_key.key
-
